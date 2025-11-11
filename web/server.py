@@ -732,7 +732,7 @@ def broadcast_status_update(data: Dict[str, Any]):
 def run_server(host='0.0.0.0', port=5000, debug=False):
     """運行Web服務器"""
     logger.info(f"啟動Web服務器於 http://{host}:{port}")
-    socketio.run(app, host=host, port=port, debug=debug, allow_unsafe_werkzeug=True)
+    socketio.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=False)
 
 
 if __name__ == '__main__':
