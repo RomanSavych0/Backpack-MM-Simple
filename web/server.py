@@ -2,6 +2,8 @@
 Flask Web服務器
 提供簡單的Web界面來控制做市交易機器人
 """
+import eventlet
+eventlet.monkey_patch()
 from flask import Flask, render_template, request, jsonify
 from flask_socketio import SocketIO, emit
 import threading
