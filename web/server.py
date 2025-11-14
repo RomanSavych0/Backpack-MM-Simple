@@ -2,6 +2,8 @@
 Flask Web服務器
 提供簡單的Web界面來控制做市交易機器人
 """
+import eventlet
+eventlet.monkey_patch()
 from flask import Flask, render_template, request, jsonify
 from flask_socketio import SocketIO, emit
 import threading
@@ -873,8 +875,9 @@ def run_server(host='0.0.0.0', port=5000, debug=False):
             return
 
     logger.info(f"啟動Web服務器於 http://{host}:{port}")
-    logger.info(f"調試模式: {'開啟' if debug else '關閉'}")
-    socketio.run(app, host=host, port=port, debug=debug, allow_unsafe_werkzeug=True)
+
+    socketio.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=False)
+
 
 
 if __name__ == '__main__':

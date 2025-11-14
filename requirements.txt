@@ -8,3 +8,5 @@ Flask
 flask-socketio
 python-socketio
 werkzeug
+gunicorn
+eventlet>=0.24.1
